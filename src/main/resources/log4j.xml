@@ -1,41 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<!-- <!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd"> -->
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
+	<!-- 메이븐에선 프로젝트 생성 시 자동으로 log4j 라이브러리가 설치됨 -->
+
 	<!-- Appenders -->
-	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+	<!-- 로그의 출력 위치를 결정(파일, 콘솔, DB 등)합니다. log4J API 문서의 XXXAppender로 끝나는 클래스들의 이름을 보면 출력 위치를 알 수 있습니다. -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">	<!-- ConsoleAppender 클래스, 콘솔에 로그 메시지를 출력합니다. -->
+	<!-- FileAppender 클래스, 파일에 로그 메시지를 출력합니다. -->
+	<!-- RollingFileAppedner 클래스, 파일 크기가 일정 기준을 넘으면 기존 파일을 백업 파일로 바꾸고 처음부터 다시 기록합니다. -->
+	<!-- DailyRollingFileAppender 클래스로, 설정한 기간 단위로 새 파일을 만들어 로그 메시지를 기록합니다. -->
 		<param name="Target" value="System.out" />
-		<layout class="org.apache.log4j.PatternLayout">
+		<layout class="org.apache.log4j.PatternLayout">	<!-- Appender가 어디에 출력할 것인지 결정했다면 어떤 형식으로 출력할지 출력 레이아웃을 결정합니다. -->
+		<!-- debug, info, error, fatal 등 로그 레벨 이름 출력 pattern -->
+		<!-- 로깅 메시지 앞에 전체 패키지 이름이나 전체 파일 이름 출력 concatenate -->
+		<!-- 로그 메시지 출력  message -->
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
 	
+	<!-- DailyRollingFileAppender -->
+	<appender name="dailyFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="C:\\spring\\logs\\output.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="DatePattern" value="'.'yyyy-MM-dd" />
+			<param name="ConversionPattern" value="[%d{HH:mm:ss}][%-5p](%F:%L)-%m%n" />	<!-- 로깅이 발생한 프로그램 파일 이름 출력-->
+		</layout>
+	</appender>
 	<!-- Application Loggers -->
-	<logger name="com.spring.pro27">
-		<level value="info" />
+	<logger name="com.spring.pro27">	<!-- 로깅 메시지를 Appender에 전달합니다. 개발자가 로그 레벨을 이용해 로그 출력 여부를조정할 수 있습니다. logger는 로그 레벨을 가지고 있으며, 로그의 출력 여부는 로그문의 레벨과 로거의 레벨을 가지고 결정합니다. -->
+		<level value="trace" />
 	</logger>
+	
+	<!-- 
+	FATAL	시스템 차원에서 심각한 문제가 발생해 애플리케이션 작동이 불가능할 경우에 해당하는 레벨입니다. 일반적으로 애플리케이션에서는 사용할 일이 없습니다.
+	ERROR	실행 중 문제가 발생한 상태를 나타냅니다.
+	WARN	향후 시스템 오류의 원인이 될 수 있는 경고 메시지를 나타냅니다.
+	INFO	로그인, 상태 변경과 같은 실제 애플리케이션 운영과 관련된 정보 메시지를 나타냅니다.
+	DEBUG	개발 시 디버깅 용도로 사용한 메시지를 나타냅니다.
+	TRACE 	DEBUG 레벨보다 상세한 로깅 정보를 출력하기 위해 도입된 레벨입니다.
+	http://logging.apache.org/log4j/1.2/manual.html	
+	 -->
+	
+	
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="info" />
+		<level value="trace" />
 	</logger>
 	
 	<logger name="org.springframework.beans">
-		<level value="info" />
+		<level value="trace" />
 	</logger>
 	
 	<logger name="org.springframework.context">
-		<level value="info" />
+		<level value="trace" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="info" />
+		<level value="trace" />
 	</logger>
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="trace" />
 		<appender-ref ref="console" />
+		<appender-ref ref="dailyFileAppender" />
 	</root>
 	
 </log4j:configuration>

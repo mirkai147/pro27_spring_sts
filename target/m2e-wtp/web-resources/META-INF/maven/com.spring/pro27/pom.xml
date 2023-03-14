@@ -42,7 +42,7 @@
 		
 		<!-- Logging -->
 		<dependency>
-			<groupId>org.slf4j</groupId>
+			<groupId>org.slf4j</groupId>	<!-- SLF4J(Simple Logging Facade for Java)는 단순한 퍼사드 패턴을 수단으로 하는 자바 로깅 API를 제공한다. -->
 			<artifactId>slf4j-api</artifactId>
 			<version>${org.slf4j-version}</version>
 		</dependency>
@@ -59,7 +59,7 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>log4j</groupId>
+			<groupId>log4j</groupId>	<!-- Log4j는 Ceki Gülcü가 처음 개발한 자바 기반 로깅 유틸리티이다.  -->
 			<artifactId>log4j</artifactId>
 			<version>1.2.15</version>
 			<exclusions>
@@ -105,19 +105,19 @@
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
+			<artifactId>jstl</artifactId>	<!-- JavaServer Pages Standard Tag Library -->
 			<version>1.2</version>
 		</dependency>
 	
 		<!-- Test -->
 		<dependency>
-			<groupId>junit</groupId>
+			<groupId>junit</groupId>	<!-- JUnit(제이유닛)은 자바 프로그래밍 언어용 유닛 테스트 프레임워크이다. -->
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>        
 	</dependencies>
-    <build>
+    <build>	<!-- 플러그인은 실제 작업의 대부분이 수행되는 곳이며 플러그인은 jar 파일 생성, war 파일 생성, 코드 컴파일, 단위 테스트 코드, 프로젝트 문서 생성 등의 작업에 사용됩니다. -->
         <plugins>
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>
@@ -146,7 +146,7 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>org.codehaus.mojo</groupId>	<!-- Mojo는 실제로 Maven의 목표 일 뿐이며 플러그인은 여러 목표(Mojos)로 구성됩니다. -->
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.2.1</version>
                 <configuration>
