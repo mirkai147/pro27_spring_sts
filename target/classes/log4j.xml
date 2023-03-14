@@ -31,7 +31,7 @@
 	</appender>
 	<!-- Application Loggers -->
 	<logger name="com.spring.pro27">	<!-- 로깅 메시지를 Appender에 전달합니다. 개발자가 로그 레벨을 이용해 로그 출력 여부를조정할 수 있습니다. logger는 로그 레벨을 가지고 있으며, 로그의 출력 여부는 로그문의 레벨과 로거의 레벨을 가지고 결정합니다. -->
-		<level value="trace" />
+		<level value="info" />
 	</logger>
 	
 	<!-- 
@@ -48,26 +48,27 @@
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="trace" />
+		<level value="info" />
 	</logger>
 	
 	<logger name="org.springframework.beans">
-		<level value="trace" />
+		<level value="info" />
 	</logger>
 	
 	<logger name="org.springframework.context">
-		<level value="trace" />
+		<level value="info" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="trace" />
+		<level value="info" />
 	</logger>
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="trace" />
+		<priority value="info" />
 		<appender-ref ref="console" />
 		<appender-ref ref="dailyFileAppender" />
 	</root>
 	
 </log4j:configuration>
+
