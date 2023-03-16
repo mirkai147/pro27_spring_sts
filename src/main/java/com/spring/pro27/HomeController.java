@@ -24,7 +24,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		//locale¿∫ ko_KR
@@ -37,6 +37,11 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
+	}*/
+	
+	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) {
+		return "main";
 	}
 	
 }
