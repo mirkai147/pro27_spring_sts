@@ -15,7 +15,6 @@ import com.spring.pro27.member.vo.MemberVO;
 @Service(value = "memberService")
 @Transactional(propagation = Propagation.REQUIRED)
 public class MemberServiceImpl  implements MemberService{
-	SqlSession sqlSession;
 	
 	@Autowired
 	private MemberDAO memberDAO;

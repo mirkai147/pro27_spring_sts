@@ -67,11 +67,11 @@ public class MemberControllerImpl implements MemberController {
 		return mav;
 	}
 	
-	@RequestMapping(value = {"/member/modForm.do"}, method = RequestMethod.GET)
-	public ModelAndView loginForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = {"/member/modForm.do"}, method = RequestMethod.POST)
+	public ModelAndView modForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("modMember");
+		ModelAndView mav = new ModelAndView("redirect:/member/modMember.do");
+//		mav.setViewName("redirect:/member/modMember.do");
 		return mav;
 	}
 	
@@ -87,6 +87,7 @@ public class MemberControllerImpl implements MemberController {
 	@RequestMapping(value = "/member/login.do", method = RequestMethod.POST)
 	public ModelAndView login(@ModelAttribute("member") MemberVO member, RedirectAttributes rAttr, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
 		memberVO = memberService.login(member);
 		if(memberVO != null) {
@@ -104,6 +105,7 @@ public class MemberControllerImpl implements MemberController {
 	@Override
 	@RequestMapping(value = "/member/logout.do", method = RequestMethod.GET)
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		session.removeAttribute("member");
 		session.removeAttribute("isLogOn");
